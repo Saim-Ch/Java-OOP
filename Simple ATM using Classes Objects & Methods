@@ -1,0 +1,80 @@
+import java.util.Scanner;
+class ATM{
+    double Balance;
+    int PIN = 1234;
+    public void checkPin(){
+        System.out.println("Enter your PIN:");
+        Scanner scan = new Scanner(System.in);
+        int enteredPin = scan.nextInt();
+        if(enteredPin == PIN){
+            menu();
+        }
+        else{
+            System.out.println("Invalid PIN");
+            checkPin();
+        }
+    }
+    public void menu(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Welcome to Bank Account");
+        System.out.println("1. My Account Information");
+        System.out.println("2. Check Balance");
+        System.out.println("3. Deposit Balance");
+        System.out.println("4. Withdraw Balance");
+        System.out.println("5. Exit");
+        Scanner scan2 = new Scanner(System.in);
+        int opt = scan2.nextInt();
+        if(opt == 1){
+            myAccountInfo();
+        }
+        else if(opt == 2){
+            checkBalance();
+        }
+        else if(opt == 3){
+            depositBalance();
+        }
+        else if(opt == 4){
+            withdrawBalance();
+        }
+        else if(opt == 5){
+            return;
+        }
+    }
+    public void myAccountInfo(){
+        System.out.println("Account Number: 67890");
+        System.out.println("Account Holder Name: John Doe");
+        System.out.println("Account Holder Email: john.doe@gmail.com");
+        System.out.println("Account Holder Phone Number: 1234567890");
+        System.out.println("-----------------------------------------");
+        menu();
+    }
+    public void checkBalance(){
+        System.out.println("Account Balance is: " + Balance);
+        System.out.println("-----------------------------------------");
+        menu();
+    }
+    public void depositBalance(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter amount to deposit:");
+        double amount = scan.nextDouble();
+        Balance += amount;
+        System.out.println("Deposit Successful");
+        System.out.println("-----------------------------------------");
+        menu();
+    }
+    public void withdrawBalance(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter amount to withdraw:");
+        double amount = scan.nextDouble();
+        Balance -= amount;
+        System.out.println("Withdraw Successful");
+        System.out.println("-----------------------------------------");
+        menu();
+    }
+}
+public class BankAccount {
+    public static void main(String[] args) {
+        ATM atm = new ATM();
+        atm.checkPin();
+    }
+}
